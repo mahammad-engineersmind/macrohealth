@@ -9,7 +9,7 @@ import SignInSignOutButton from "./ui-components/SignInSignOutButton";
 // Sample app imports
 import { Home } from "./pages/Home";
 
-import "./App.css";
+import './styles/index.css'
 
 type AppProps = {
   pca: IPublicClientApplication;

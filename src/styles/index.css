@@ -1,0 +1,33 @@
+@import url("./index-CJhlg47T.css");
+@import url("./index-DpGm0fi4.css");
+@import url("./index-KlQ66m3c.css");
+
+._title_12z6i_14 {
+  width: 100%;
+}
+
+._wrapper_1npeu_18 {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+/* src/Table.css */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}

@@ -15,7 +15,7 @@ function formatDate(date) {
   return `${year}-${month}-${day}`;
 }
 
-export function Home1() {
+export function Home() {
   const [date, setDate] = useState(new Date());
   const [data, setData] = useState([]);
   const [data2, setData2] = useState([]);
@@ -117,10 +117,10 @@ export function Home1() {
   );
 }
 
-export function Home() {
-  return (
-    <AuthenticatedTemplate>
-      <Home1></Home1>
-    </AuthenticatedTemplate>
-  );
-}
+// export function Home() {
+//   return (
+//     <AuthenticatedTemplate>
+//       <Home1></Home1>
+//     </AuthenticatedTemplate>
+//   );
+// }
