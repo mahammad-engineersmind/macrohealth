@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 
@@ -32,11 +32,11 @@ msalInstance.initialize().then(() => {
 
 class WebComponent extends HTMLElement {
   connectedCallback() {
-    ReactDOM.render(
+    const root = createRoot(this);
+    root.render(
       <Router>
         <App pca={msalInstance} />
-      </Router>,
-      this
+      </Router>
     );
   }
 }
