@@ -117,10 +117,10 @@ export function Home() {
   );
 }
 
-// export function Home() {
-//   return (
-//     <AuthenticatedTemplate>
-//       <Home1></Home1>
-//     </AuthenticatedTemplate>
-//   );
-// }
+export function HomeWrapper() {
+  return (
+    <AuthenticatedTemplate>
+      <Home></Home>
+    </AuthenticatedTemplate>
+  );
+}

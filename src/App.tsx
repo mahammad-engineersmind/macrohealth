@@ -7,7 +7,7 @@ import { CustomNavigationClient } from "./utils/NavigationClient";
 import SignInSignOutButton from "./ui-components/SignInSignOutButton";
 
 // Sample app imports
-import { Home } from "./pages/Home";
+import { HomeWrapper } from "./pages/Home";
 
 import './styles/index.css'
 
@@ -25,7 +25,7 @@ function App({ pca }: AppProps) {
     <MsalProvider instance={pca}>
       <div style={{ margin: "16px" }}>
         <SignInSignOutButton />
-        <Home />
+        <HomeWrapper />
       </div>
     </MsalProvider>
   );
