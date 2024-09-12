@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ThemeProvider } from "@mui/material/styles";
-import { theme } from "./styles/theme";
 import App from "./App";
 
 // MSAL imports
@@ -36,10 +34,9 @@ class WebComponent extends HTMLElement {
   connectedCallback() {
     ReactDOM.render(
       <Router>
-        <ThemeProvider theme={theme}>
-          <App pca={msalInstance} />
-        </ThemeProvider>
-      </Router>, this
+        <App pca={msalInstance} />
+      </Router>,
+      this
     );
   }
 }
