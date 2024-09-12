@@ -25,17 +25,9 @@ function App({ pca }: AppProps) {
     <MsalProvider instance={pca}>
       <div style={{ margin: "16px" }}>
         <SignInSignOutButton />
-        <Pages />
+        <Home />
       </div>
     </MsalProvider>
-  );
-}
-
-function Pages() {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
   );
 }
 
