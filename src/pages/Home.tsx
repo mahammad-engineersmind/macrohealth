@@ -15,6 +15,8 @@ function formatDate(date) {
   return `${year}-${month}-${day}`;
 }
 
+const API_URL = process.env.REACT_APP_API_URL
+
 export function Home() {
   const [date, setDate] = useState(new Date());
   const [data, setData] = useState([]);
@@ -36,7 +38,7 @@ export function Home() {
     });
 
     const headers = new Headers();
-    const bearer = `${response.idToken}`;
+    const bearer = `Bearer ${response.idToken}`;
 
     headers.append("Authorization", bearer);
 
@@ -47,7 +49,7 @@ export function Home() {
     const headers = await getToken();
 
     try {
-      const response = await fetch("http://localhost:3000/api/customer", {
+      const response = await fetch(API_URL + "/api/customer", {
         method: "GET",
         headers: headers,
       });
@@ -68,7 +70,7 @@ export function Home() {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/expectedFiles/check?date=${formatDate(
+        API_URL + `/api/expectedFiles/check?date=${formatDate(
           date
         )}`,
         {
