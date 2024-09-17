@@ -1,12 +1,15 @@
-import { Configuration, PopupRequest } from "@azure/msal-browser";
+import { BrowserCacheLocation, Configuration, PopupRequest } from "@azure/msal-browser";
 
 // Config object to be passed to Msal on creation
 export const msalConfig: Configuration = {
     auth: {
         clientId: `${process.env.REACT_APP_AZURE_CLIENT_ID}`,
         authority: `https://login.microsoftonline.com/${process.env.REACT_APP_AZURE_TENANT_ID}`,
-        redirectUri: "/",
+        redirectUri: "/home",
         postLogoutRedirectUri: "/"
+    },
+    cache: {
+        cacheLocation: BrowserCacheLocation.LocalStorage
     },
     system: {
         allowNativeBroker: false // Disables WAM Broker
