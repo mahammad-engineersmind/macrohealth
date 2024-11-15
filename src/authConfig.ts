@@ -5,7 +5,7 @@ export const msalConfig: Configuration = {
     auth: {
         clientId: `${process.env.REACT_APP_AZURE_CLIENT_ID}`,
         authority: `https://login.microsoftonline.com/${process.env.REACT_APP_AZURE_TENANT_ID}`,
-        redirectUri: "/home",
+        redirectUri: "/",
         postLogoutRedirectUri: "/"
     },
     cache: {
@@ -18,7 +18,7 @@ export const msalConfig: Configuration = {
 
 // Add here scopes for id token to be used at MS Identity Platform endpoints.
 export const loginRequest: PopupRequest = {
-    scopes: ["openid", "profile", "email"]
+    scopes: [".default"]
 };
 
 // Add here the endpoints for MS Graph API services you would like to use.

@@ -2,7 +2,6 @@ import { AuthenticatedTemplate } from "@azure/msal-react";
 
 import React, { useState, useEffect } from "react";
 
-import { OperationalDashboard } from "../platform-types/component";
 import Table from "../ui-components/Table";
 import { msalInstance } from "../index";
 import { loginRequest } from "../authConfig";
@@ -15,7 +14,7 @@ function formatDate(date) {
   return `${year}-${month}-${day}`;
 }
 
-const API_URL = process.env.REACT_APP_API_URL
+const API_URL = process.env.REACT_APP_API_URL;
 
 export function Home() {
   const [date, setDate] = useState(new Date());
@@ -37,8 +36,10 @@ export function Home() {
       account: account,
     });
 
+    console.log(response)
+
     const headers = new Headers();
-    const bearer = `Bearer ${response.idToken}`;
+    const bearer = `Bearer ${response.accessToken}`;
 
     headers.append("Authorization", bearer);
 
@@ -49,7 +50,7 @@ export function Home() {
     const headers = await getToken();
 
     try {
-      const response = await fetch(API_URL + "/api/customer", {
+      const response = await fetch('https://graph.microsoft.com/v1.0/me/memberOf', {
         method: "GET",
         headers: headers,
       });
@@ -57,6 +58,19 @@ export function Home() {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
+
+      data.value.forEach(async (group)=>{
+        const response = await fetch('https://graph.microsoft.com/v1.0/groups/' + group.id, {
+          method: "GET",
+          headers: headers,
+        });
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+      const data = await response.json();
+console.log('group', data)
+      })
+
       setData(data);
       setLoading(false);
     } catch (error) {
@@ -70,9 +84,7 @@ export function Home() {
 
     try {
       const response = await fetch(
-        API_URL + `/api/expectedFiles/check?date=${formatDate(
-          date
-        )}`,
+        API_URL + `/api/expectedFiles/check?date=${formatDate(date)}`,
         {
           method: "GET",
           headers: headers,
@@ -94,25 +106,16 @@ export function Home() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log(formatDate(date));
-    fetchData2();
-  }, [date]);
+  // useEffect(() => {
+  //   console.log(formatDate(date));
+  //   fetchData2();
+  // }, [date]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="container">
-      <OperationalDashboard
-        onChangeDate={(date) => {
-          setDate(date);
-        }}
-        expectationCheck={data2}
-        timeZones={[]}
-        allowEdit
-      />
-
       <div className="_title_12z6i_14">Customer Table</div>
       <Table data={data} />
     </div>
