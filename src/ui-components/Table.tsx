@@ -8,6 +8,7 @@ const Table = ({ data }) => {
       <thead>
         <tr>
           <th>ID</th>
+          <th>Type</th>
           <th>Name</th>
         </tr>
       </thead>
@@ -15,7 +16,8 @@ const Table = ({ data }) => {
         {data.map((item) => (
           <tr key={item.id}>
             <td>{item.id}</td>
-            <td>{item.name}</td>
+            <td>{item['@odata.type']}</td>
+            <td>{item.displayName}</td>
           </tr>
         ))}
       </tbody>
